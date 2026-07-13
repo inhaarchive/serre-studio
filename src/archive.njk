@@ -3,7 +3,20 @@ layout: base.njk
 title: Archive
 permalink: /archive/index.html
 ---
-<section class="page-intro"><p class="eyebrow">Curated Collections</p><h1>Exhibition</h1><p>각 컬렉션을 하나의 독립된 전시로 감상합니다.</p></section>
+
+<section class="page-intro">
+  <p class="eyebrow">AI IMAGE EXHIBITION</p>
+  <h1>Exhibition</h1>
+  <p>
+    하나의 주제와 서사로 완성된 이미지 컬렉션을 전시합니다.<br>
+    작품 속 상징과 감정, 장면의 흐름을 함께 감상할 수 있습니다.
+  </p>
+</section>
+
 <div class="archive-grid">
-{% for item in collections.publicExhibitions %}{% include "card.njk" %}{% else %}<p class="empty-state">공개된 전시가 아직 없습니다.</p>{% endfor %}
+  {% for item in collections.publicExhibitions %}
+    {% include "card.njk" %}
+  {% else %}
+    <p class="empty-state">공개된 전시가 아직 없습니다.</p>
+  {% endfor %}
 </div>
