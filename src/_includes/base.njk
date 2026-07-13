@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3ea">
+  <title>{{ title or site.name }}{% if title and title != site.name %} · {{ site.name }}{% endif %}</title>
+  <meta name="description" content="{{ summary or site.description }}">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 이동</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="SERRE Studio 홈">
+      <img src="/assets/serre-symbol.png" alt="" width="52" height="52">
+      <span>SERRE Studio</span>
+    </a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="주 메뉴">
+      <a href="/archive/">Archive</a>
+      <a href="/visual-dictionary/">Visual Dictionary</a>
+      <a href="/research-notes/">Research Notes</a>
+      <a href="/about/">About</a>
+    </nav>
+  </header>
+  <main id="main">{{ content | safe }}</main>
+  <footer class="site-footer">
+    <span>© SERRE Studio</span>
+    <span>Online Exhibition & Visual Language Archive</span>
+  </footer>
+  <div class="lightbox" id="lightbox" hidden aria-modal="true" role="dialog" aria-label="작품 이미지 확대 보기">
+    <button class="lightbox-close" type="button" aria-label="닫기">×</button>
+    <button class="lightbox-prev" type="button" aria-label="이전 이미지">‹</button>
+    <figure>
+      <img id="lightbox-image" alt="">
+      <figcaption id="lightbox-caption"></figcaption><p id="lightbox-reading" class="lightbox-reading"></p>
+    </figure>
+    <button class="lightbox-next" type="button" aria-label="다음 이미지">›</button>
+    <div class="lightbox-count" id="lightbox-count"></div>
+  </div>
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

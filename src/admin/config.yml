@@ -1,0 +1,85 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+publish_mode: simple
+media_folder: "src/assets/uploads"
+public_folder: "/assets/uploads"
+site_url: ""
+display_url: ""
+logo_url: "/assets/serre-symbol.png"
+locale: "ko"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: "exhibitions"
+    label: "전시 Archive"
+    label_singular: "전시"
+    folder: "src/content/exhibitions"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: ["order", "date", "title", "status"]
+    summary: "{{title}} · {{status}}"
+    fields: &common_fields
+      - { label: "제목", name: "title", widget: "string" }
+      - { label: "부제", name: "subtitle", widget: "string", required: false }
+      - { label: "게시 날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "전시 순서", name: "order", widget: "number", value_type: "int", min: 1, default: 100, hint: "숫자가 작을수록 목록 앞에 표시됩니다." }
+      - label: "상태"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "공개", value: "public" }
+          - { label: "비공개·보관", value: "archive" }
+          - { label: "초안", value: "draft" }
+        default: "draft"
+      - { label: "대표 이미지", name: "cover", widget: "image" }
+      - { label: "대표 이미지 대체텍스트", name: "cover_alt", widget: "string", required: false, hint: "시각장애인을 위한 짧은 이미지 설명" }
+      - { label: "짧은 소개", name: "summary", widget: "text", required: false }
+      - { label: "본문·큐레이터 노트", name: "body", widget: "markdown", required: false }
+      - label: "작품 이미지"
+        name: "gallery"
+        widget: "list"
+        required: false
+        summary: "{{fields.title}}"
+        fields:
+          - { label: "이미지", name: "image", widget: "image" }
+          - { label: "작품명", name: "title", widget: "string", required: false }
+          - { label: "상단 표기", name: "eyebrow", widget: "string", required: false, hint: "예: 01 · SILVER GARDEN" }
+          - { label: "부제", name: "subtitle", widget: "string", required: false }
+          - { label: "작품 해설", name: "caption", widget: "text", required: false }
+          - { label: "이미지 대체텍스트", name: "alt", widget: "string", required: false }
+
+  - name: "dictionary"
+    label: "Visual Dictionary"
+    label_singular: "시각 사전"
+    folder: "src/content/dictionary"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: ["order", "date", "title", "status"]
+    summary: "{{title}} · {{status}}"
+    fields: *common_fields
+
+  - name: "notes"
+    label: "Research Notes"
+    label_singular: "연구 노트"
+    folder: "src/content/notes"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: ["order", "date", "title", "status"]
+    summary: "{{title}} · {{status}}"
+    fields: *common_fields

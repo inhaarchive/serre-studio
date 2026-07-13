@@ -1,0 +1,10 @@
+<a class="archive-card" href="{{ item.url }}">
+  <div class="archive-card-image">
+    <img src="{{ item.data.cover }}" alt="{{ item.data.cover_alt or item.data.title }}" loading="lazy">
+  </div>
+  <div class="archive-card-meta">
+    <h2>{{ item.data.title }}</h2>
+    {% if item.data.subtitle %}<p>{{ item.data.subtitle }}</p>{% endif %}
+    <span>{{ item.data.date | readableDate }}</span>
+  </div>
+</a>

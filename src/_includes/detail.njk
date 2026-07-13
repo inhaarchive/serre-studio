@@ -1,0 +1,49 @@
+---
+layout: base.njk
+---
+<article class="exhibition-detail">
+  <header class="detail-header">
+    <p class="eyebrow">{{ section_label }}</p>
+    <h1>{{ title }}</h1>
+    {% if subtitle %}<p class="detail-subtitle">{{ subtitle }}</p>{% endif %}
+    <div class="detail-date">{{ date | readableDate }}</div>
+  </header>
+
+  {% if cover %}
+  <figure class="detail-cover">
+    <img src="{{ cover }}" alt="{{ cover_alt or title }}">
+  </figure>
+  {% endif %}
+
+  {% if content %}<div class="curator-note prose">{{ content | safe }}</div>{% endif %}
+
+  {% if gallery and gallery.length %}
+  <section class="gallery-section" aria-labelledby="gallery-title">
+    <div class="section-heading">
+      <p class="eyebrow">Selected Works</p>
+      <h2 id="gallery-title">작품 보기</h2>
+      <p>이미지를 누르면 크게 보고 좌우로 넘길 수 있습니다.</p>
+    </div>
+    <div class="art-grid" data-gallery>
+      {% for work in gallery %}
+      <button class="art-card" type="button"
+        data-full="{{ work.image }}"
+        data-title="{{ work.title or title }}"
+        data-eyebrow="{{ work.eyebrow or '' }}"
+        data-subtitle="{{ work.subtitle or '' }}"
+        data-caption="{{ work.caption or '' }}"
+        aria-label="{{ work.title or title }} 확대 보기">
+        <img src="{{ work.image }}" alt="{{ work.alt or work.title or title }}" loading="lazy">
+        {% if work.title or work.eyebrow or work.subtitle %}
+        <span class="art-caption">
+          {% if work.eyebrow %}<em>{{ work.eyebrow }}</em>{% endif %}
+          {% if work.title %}<b>{{ work.title }}</b>{% endif %}
+          {% if work.subtitle %}<small>{{ work.subtitle }}</small>{% endif %}
+        </span>
+        {% endif %}
+      </button>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</article>
