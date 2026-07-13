@@ -12,7 +12,7 @@ logo_url: "/assets/serre-symbol.png"
 locale: "ko"
 
 slug:
-  encoding: "ascii"
+  encoding: "unicode"
   clean_accents: true
   sanitize_replacement: "-"
 
