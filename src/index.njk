@@ -71,18 +71,3 @@ title: SERRE Studio
     </a>
   </div>
 </section>
-
-{% if collections.publicExhibitions.length %}
-<section class="home-section">
-  <div class="section-heading">
-    <p class="eyebrow">RECENT EXHIBITION</p>
-    <h2>최근 전시</h2>
-  </div>
-
-  <div class="archive-grid">
-    {% for item in collections.publicExhibitions | slice(0, 4) %}
-      {% include "card.njk" %}
-    {% endfor %}
-  </div>
-</section>
-{% endif %}
