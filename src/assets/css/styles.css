@@ -23,3 +23,22 @@ body.lightbox-open{overflow:hidden}.art-caption em{display:block;font-style:norm
     object-position: center;
   }
 }
+
+/* Mobile category poster sizing */
+@media (max-width: 800px) {
+  .category-grid {
+    gap: 28px;
+  }
+
+  .category-grid a {
+    width: 92%;
+    min-height: 0;
+    margin-inline: auto;
+  }
+
+  .category-grid img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
