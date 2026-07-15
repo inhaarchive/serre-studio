@@ -53,6 +53,11 @@ body.lightbox-open{overflow:hidden}.art-caption em{display:block;font-style:norm
     min-height: 0;
   }
 
+  .section-heading h2 {
+    font-size: 36px;
+    line-height: 1.22;
+  }
+
   .hero-video video {
     width: 100%;
     height: auto;
