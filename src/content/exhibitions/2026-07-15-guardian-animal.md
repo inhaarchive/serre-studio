@@ -3,7 +3,7 @@ title: GUARDIAN ANIMAL
 subtitle: 운과 복을 부르는 존재
 date: 2026-07-16
 order: 100
-status: draft
+status: public
 cover: /assets/uploads/1000173896.png
 cover_alt: 행운의 동물들
 summary: |-
