@@ -83,3 +83,70 @@ body.lightbox-open{overflow:hidden}.art-caption em{display:block;font-style:norm
     object-fit: contain;
   }
 }
+
+/* SERRE touch and click sparkle effect */
+.serre-sparkle {
+  position: fixed;
+  z-index: 9999;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(248, 234, 196, 0.95) 35%,
+    rgba(184, 154, 94, 0.25) 70%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.95),
+    0 0 14px rgba(248, 224, 170, 0.7);
+  transform: translate(-50%, -50%) scale(0.2);
+  opacity: 0;
+  animation: serreSparkle 0.9s ease-out var(--sparkle-delay, 0s) forwards;
+}
+
+.serre-sparkle::before,
+.serre-sparkle::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 18px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.9);
+  transform: translate(-50%, -50%);
+}
+
+.serre-sparkle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+@keyframes serreSparkle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(
+        calc(-50% + var(--move-x)),
+        calc(-50% + var(--move-y))
+      )
+      scale(1.1)
+      rotate(45deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .serre-sparkle {
+    animation: none;
+    display: none;
+  }
+}
