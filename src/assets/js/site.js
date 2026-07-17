@@ -34,7 +34,7 @@ if(lightbox&&cards.length){
 }
 
 // SERRE touch and click light effect
-const effectAreas = '.hero, .art-card, .lightbox figure';
+const effectAreas = 'body';
 
 document.addEventListener('pointerdown', event => {
   const area = event.target.closest(effectAreas);
