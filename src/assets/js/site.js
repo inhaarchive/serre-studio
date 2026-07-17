@@ -32,3 +32,33 @@ if(lightbox&&cards.length){
   image.addEventListener('touchstart',e=>{startX=e.changedTouches[0].clientX},{passive:true});
   image.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>45)show(index+(dx<0?1:-1));},{passive:true});
 }
+
+// SERRE touch and click light effect
+const effectAreas = '.hero, .art-card, .lightbox figure';
+
+document.addEventListener('pointerdown', event => {
+  const area = event.target.closest(effectAreas);
+  if (!area) return;
+
+  const sparkleCount = 6;
+
+  for (let i = 0; i < sparkleCount; i += 1) {
+    const sparkle = document.createElement('span');
+    sparkle.className = 'serre-sparkle';
+
+    const angle = (Math.PI * 2 * i) / sparkleCount;
+    const distance = 22 + Math.random() * 28;
+
+    sparkle.style.left = `${event.clientX}px`;
+    sparkle.style.top = `${event.clientY}px`;
+    sparkle.style.setProperty('--move-x', `${Math.cos(angle) * distance}px`);
+    sparkle.style.setProperty('--move-y', `${Math.sin(angle) * distance}px`);
+    sparkle.style.setProperty('--sparkle-delay', `${Math.random() * 0.12}s`);
+
+    document.body.appendChild(sparkle);
+
+    sparkle.addEventListener('animationend', () => {
+      sparkle.remove();
+    });
+  }
+});
