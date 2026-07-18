@@ -180,3 +180,33 @@ body.lightbox-open{overflow:hidden}.art-caption em{display:block;font-style:norm
     display: none;
   }
 }
+
+/* Desktop hero: show the full 16:9 artwork */
+@media (min-width: 801px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero-image,
+  .hero-video {
+    order: -1;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .hero-video video {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .hero-copy {
+    width: min(1180px, calc(100% - 80px));
+    margin-inline: auto;
+    padding: 64px 0 84px;
+  }
+}
